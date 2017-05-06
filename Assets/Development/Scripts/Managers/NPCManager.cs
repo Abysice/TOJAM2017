@@ -4,12 +4,10 @@ using System.Collections;
 public class NPCManager : MonoBehaviour {
 	private GameObject NPC;
 	private int NPCCount;
-	private int NPCInLine;
 
 	// Use this for initialization
 	void Start () {
-		NPCCount = 0;
-		NPCInLine = 0;
+		NPCCount = 0;	
 	}
 	
 	// Update is called once per frame
@@ -29,18 +27,5 @@ public class NPCManager : MonoBehaviour {
 
 	public int GetNPCCount() {
 		return NPCCount;
-	}
-
-	public void IncreaseLine() {
-		NPCInLine++;
-		Debug.Log ("line" + NPCInLine);
-	}
-
-	public void DecreaseLine() {
-		NPCInLine--;
-	}
-
-	public int GetNPCLineCount() {
-		return NPCInLine;
 	}
 }

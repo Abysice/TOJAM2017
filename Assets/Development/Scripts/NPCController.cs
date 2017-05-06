@@ -4,13 +4,13 @@ using System.Collections;
 public class NPCController : MonoBehaviour {
 	private bool bookReceived;
 	private bool bookRequested;
-	private bool inLine;
-	private int placeInLine;
+	private float speed;
 
 	// Use this for initialization
 	void Start () {
 		bookReceived = false;
 		bookRequested = false;
+		speed = 3f;
 	}
 	
 	// Update is called once per frame
@@ -34,10 +34,8 @@ public class NPCController : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.up, .5f);
 	
 		if (pos.y <= 1 && !hit.collider) {
-			pos.y += 1f * Time.deltaTime;
+			pos.y += speed * Time.deltaTime;
 			transform.position = Vector3.Lerp (transform.position, pos, 0.5f);
-		} else {
-			Debug.Log (hit.collider.name);
 		}
 
 		if (pos.y >= 1) {
@@ -53,15 +51,11 @@ public class NPCController : MonoBehaviour {
 
 	public void leaveLibrary() {
 		Vector2 pos = transform.position;
-		if (inLine) {
-			inLine = false;
-			Managers.GetInstance ().GetNPCManager ().DecreaseLine ();
-		}
 		if (pos.x < 1) {
-			pos.x += 1f * Time.deltaTime;
+			pos.x += speed * Time.deltaTime;
 			transform.position = Vector3.Lerp (transform.position, pos, 0.5f);
 		} else if(pos.y >= -5) {
-			pos.y -= 1f * Time.deltaTime;
+			pos.y -= speed * Time.deltaTime;
 			transform.position = Vector3.Lerp (transform.position, pos, 0.5f);
 		}
 		if (pos.y <= -5) {
