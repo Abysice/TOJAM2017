@@ -9,15 +9,31 @@ public class LibraryManager : MonoBehaviour {
 	private List<GameObject> m_bookshelves = new List<GameObject>();
 	private List<Vector3> m_spawnPoints = new List<Vector3> ();
 
+	private int Currency;
+	private GameStateManager m_mgr;
+
 	// Use this for initialization
 	void Start () {
-	
+		Currency = 0;
+		m_mgr = Managers.GetInstance ().GetGameStateManager ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+		if (m_mgr.CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
+			return;
+		}
+
+
+
+
+
 	}
+
+
+
+
 
 
 	public void SpawnLevel(){
