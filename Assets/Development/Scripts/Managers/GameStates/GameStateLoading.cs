@@ -15,8 +15,7 @@ public class GameStateLoading : GameStateBase {
 		Debug.Log("In Loading state");
 	}
 
-	public override void UpdateState()
-	{
+	public override void UpdateState() {
 		//add some loading screen shenanigans before this
 		m_gameStateManager.ChangeGameState(Enums.GameStateNames.GS_03_INPLAY);
 	}
@@ -25,5 +24,6 @@ public class GameStateLoading : GameStateBase {
 	{
 		Managers.GetInstance().GetPlayerManager().SpawnPlayer();
 		Managers.GetInstance ().GetPlayerManager ().SpawnCamera ();
+		Managers.GetInstance ().GetLibraryManager ().SpawnLevel ();
 	}
 }

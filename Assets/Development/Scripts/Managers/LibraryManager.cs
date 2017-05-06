@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LibraryManager : MonoBehaviour {
 
-
+	private GameObject m_level;
 
 
 	// Use this for initialization
@@ -15,12 +15,12 @@ public class LibraryManager : MonoBehaviour {
 	void Update () {
 	
 	}
-	///
+
 
 
 
 	public void SpawnLevel(){
-
+		m_level = GameObject.Instantiate(Managers.GetInstance().GetGameProperties().LevelPrefab);
 
 	}
 
