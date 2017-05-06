@@ -3,6 +3,9 @@ using System.Collections;
 
 public class LibraryManager : MonoBehaviour {
 
+
+
+
 	// Use this for initialization
 	void Start () {
 	
@@ -12,4 +15,14 @@ public class LibraryManager : MonoBehaviour {
 	void Update () {
 	
 	}
+	///
+
+
+
+	public void SpawnLevel(){
+
+
+	}
+
+
 }
