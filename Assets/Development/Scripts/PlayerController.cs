@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public float speed = 10f;
+	public float speed = 5f;
 	private Vector2 direction;
 	public float lerpVal = .9f;
 
@@ -34,9 +34,15 @@ public class PlayerController : MonoBehaviour {
 		if (movementVector != Vector3.zero) {
 			setDirection (movementVector);
 		}
-
-		transform.position = Vector3.Lerp(startPos, pos, lerpVal);
-		Debug.Log (direction);
+		RaycastHit2D hitTL = Physics2D.Raycast (transform.position + new Vector3(.5f,.5f,0f), movementVector, .24f);
+		RaycastHit2D hitTR = Physics2D.Raycast (transform.position + new Vector3(.5f,-.5f,0f), movementVector, .24f);
+		RaycastHit2D hitBL = Physics2D.Raycast (transform.position + new Vector3(-.5f,.5f,0f), movementVector, .24f);
+		RaycastHit2D hitBR = Physics2D.Raycast (transform.position + new Vector3(-.5f,-.5f,0f), movementVector, .24f);
+		if (hitTL.collider == null && hitTR.collider == null && hitBL.collider == null && hitBR.collider == null) {			
+			transform.position = Vector3.Lerp (startPos, pos, lerpVal);
+		} else {
+			//Debug.Log (hit.collider.name);
+		}
 
 	}
 
