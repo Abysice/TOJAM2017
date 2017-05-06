@@ -25,6 +25,6 @@ public class GameStateLoading : GameStateBase {
 		Managers.GetInstance().GetPlayerManager().SpawnPlayer();
 		Managers.GetInstance ().GetPlayerManager ().SpawnCamera ();
 		Managers.GetInstance ().GetLibraryManager ().SpawnLevel ();
-		Managers.GetInstance ().GetNPCManager ().SpawnNPC ();
+		Managers.GetInstance ().GetNPCManager ().SpawnLineNPC ();
 	}
 }
