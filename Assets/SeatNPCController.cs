@@ -36,6 +36,7 @@ public class SeatNPCController : MonoBehaviour {
 			
 		if (timeToTalk <= 0 && !talking) {
 			talking = true;
+			talk();
 		}
 
 		if (timeToLive <= 0) {
@@ -76,7 +77,19 @@ public class SeatNPCController : MonoBehaviour {
 		return talking;
 	}
 
+	public void Shush() {
+		if (talking) {
+			talking = false;
+			timeToTalk = Random.Range (4, 8);
+			gameObject.GetComponent<Renderer> ().material.color = Color.grey;
+		}
+	}
+
 	public bool isDestroy() {
 		return destroy;
+	}
+
+	private void talk() {
+		gameObject.GetComponent<Renderer> ().material.color = Color.red;
 	}
 }
