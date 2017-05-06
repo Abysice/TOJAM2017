@@ -5,18 +5,25 @@ public class NPCController : MonoBehaviour {
 	private bool bookReceived;
 	private bool bookRequested;
 	private float speed;
+	private int happiness;
+	private float timer;
+	private bool angry;
+	private bool destroy;
 
 	// Use this for initialization
 	void Start () {
 		bookReceived = false;
 		bookRequested = false;
+		angry = false;
 		speed = 3f;
+		happiness = Random.Range (4, 8);
+		timer = 10f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (!bookRequested) {
+		if (!bookRequested && !angry) {
 			walkToDesk ();
 		}
 
@@ -27,6 +34,18 @@ public class NPCController : MonoBehaviour {
 		if (bookRequested && Input.GetKey ("space")) {
 			bookReceived = true;
 		}
+
+		if (timer <= 0) {
+			happiness--;
+			timer = 10f;
+		}
+
+		if (happiness <= 0) {
+			leaveLibrary();
+			angry = true;
+		}
+		//Debug.Log (happiness);
+		timer -= Time.deltaTime;
 	}
 
 	public void walkToDesk() {
@@ -60,8 +79,21 @@ public class NPCController : MonoBehaviour {
 		}
 		if (pos.y <= -5) {
 			Managers.GetInstance ().GetNPCManager ().RemoveNPC ();
-			Destroy (gameObject);	
+			Managers.GetInstance ().GetNPCManager ().SubtractLine ();
+			destroy = true;
 		}
 	}
-		
+
+	public int GetHappiness() {
+		return happiness;
+	}
+
+	public bool isAngry() {
+		return angry;
+	}
+
+	public bool isDestroy() {
+		return destroy;
+	}
 }
+	
