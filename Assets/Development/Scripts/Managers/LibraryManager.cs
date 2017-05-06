@@ -28,7 +28,7 @@ public class LibraryManager : MonoBehaviour {
 		for(int i = 0; i < m_level.transform.GetChildCount(); i++)
 		{
 			Transform child = m_level.transform.GetChild(i);
-			if (child.name == "SPAWN") {
+			if (child.tag == "ShelfSpawn") {
 				m_spawnPoints.Add (child.position);
 			}
 		}
