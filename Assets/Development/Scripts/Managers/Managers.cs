@@ -10,6 +10,7 @@ public class Managers : MonoBehaviour {
 	private LibraryManager m_libmanager;
 	private GameProperties m_properties;
 	private PlayerManager m_playermanager;
+	private NPCManager m_npcmanager;
 
 	//Accessors
 	public static Managers GetInstance() {
@@ -32,6 +33,10 @@ public class Managers : MonoBehaviour {
 		return m_playermanager;
 	}
 
+	public NPCManager GetNPCManager() {
+		return m_npcmanager;
+	}
+
 	//Public Variables
 	public void Awake()	{
 		m_instance = this;
@@ -43,6 +48,7 @@ public class Managers : MonoBehaviour {
 		m_gamestatemanager = gameObject.AddComponent<GameStateManager>();
 		m_libmanager = gameObject.AddComponent<LibraryManager> ();
 		m_playermanager = gameObject.AddComponent<PlayerManager> ();
+		m_npcmanager = gameObject.AddComponent<NPCManager> ();
 
 
 		//preferably call init after

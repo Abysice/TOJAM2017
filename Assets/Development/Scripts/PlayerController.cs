@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour {
 		Vector3 pos = transform.position;
 		Vector3 startPos = pos;
 		Vector3 movementVector = Vector3.zero;
+		if (Input.GetKey ("u")) {
+			Managers.GetInstance ().GetNPCManager ().SpawnNPC ();
+		}
 
 		if (Input.GetKey ("up") || Input.GetKey("w")) {
 			movementVector += Vector3.up;
