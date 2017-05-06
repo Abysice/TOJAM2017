@@ -12,4 +12,17 @@ public class Enums : MonoBehaviour {
 		GS_04_LEAVING
 
 	};
+
+	public enum BookTypes {
+		Null = -1,
+		NonFiction = 0,
+		Horror = 1,
+		Fantasy,
+		SciFi,
+		Romance,
+		Childrens,
+		Mystery,
+		Classics,
+		Art,
+	};
 }

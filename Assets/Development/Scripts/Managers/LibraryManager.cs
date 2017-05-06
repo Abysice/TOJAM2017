@@ -36,6 +36,7 @@ public class LibraryManager : MonoBehaviour {
 		//spawn bookshelves
 		foreach (Vector3 pos in m_spawnPoints) {
 			GameObject temp = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().BookShelves [0], pos, Quaternion.identity) as GameObject;
+			temp.name = Managers.GetInstance ().GetGameProperties ().BookShelves [0].name;
 			m_bookshelves.Add (temp);
 
 		}
