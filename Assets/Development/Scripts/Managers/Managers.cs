@@ -12,6 +12,7 @@ public class Managers : MonoBehaviour {
 	//Accessors
 	public static Managers GetInstance()
 	{
+
 		return m_instance;
 	}
 
@@ -23,13 +24,12 @@ public class Managers : MonoBehaviour {
 	//Public Variables
 	public void Awake()
 	{
+		m_instance = this;
+
+	}
+	public void Start() {
 		//Create managers here
 		m_gamestatemanager = gameObject.AddComponent<GameStateManager>();
-
-
-
-
-
 
 		//preferably call init after
 		m_gamestatemanager.Init();
