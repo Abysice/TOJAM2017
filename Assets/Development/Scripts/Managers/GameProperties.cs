@@ -7,5 +7,6 @@ public class GameProperties : MonoBehaviour {
 	public GameObject CameraPrefab;
 	public GameObject LevelPrefab;
 	public GameObject[] BookShelves;
-	public GameObject NPCPrefab;
+	public GameObject LineNPCPrefab;
+	public GameObject SeatNPCPrefab;
 }

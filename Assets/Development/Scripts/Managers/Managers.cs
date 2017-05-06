@@ -11,6 +11,7 @@ public class Managers : MonoBehaviour {
 	private GameProperties m_properties;
 	private PlayerManager m_playermanager;
 	private NPCManager m_npcmanager;
+	private SeatManager m_seatmanager;
 
 	//Accessors
 	public static Managers GetInstance() {
@@ -37,6 +38,10 @@ public class Managers : MonoBehaviour {
 		return m_npcmanager;
 	}
 
+	public SeatManager GetSeatManager() {
+		return m_seatmanager;
+	}
+
 	//Public Variables
 	public void Awake()	{
 		m_instance = this;
@@ -49,7 +54,7 @@ public class Managers : MonoBehaviour {
 		m_libmanager = gameObject.AddComponent<LibraryManager> ();
 		m_playermanager = gameObject.AddComponent<PlayerManager> ();
 		m_npcmanager = gameObject.AddComponent<NPCManager> ();
-
+		m_seatmanager = gameObject.AddComponent<SeatManager> ();
 
 		//preferably call init after
 		m_gamestatemanager.Init();
