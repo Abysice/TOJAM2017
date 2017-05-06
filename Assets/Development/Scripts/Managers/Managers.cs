@@ -9,6 +9,7 @@ public class Managers : MonoBehaviour {
 	private GameStateManager m_gamestatemanager;
 	private LibraryManager m_libmanager;
 	private GameProperties m_properties;
+	private PlayerManager m_playermanager;
 
 	//Accessors
 	public static Managers GetInstance() {
@@ -27,6 +28,9 @@ public class Managers : MonoBehaviour {
 		return m_properties;
 	}
 
+	public PlayerManager GetPlayerManager() {
+		return m_playermanager;
+	}
 
 	//Public Variables
 	public void Awake()	{
@@ -38,6 +42,7 @@ public class Managers : MonoBehaviour {
 		m_properties = gameObject.GetComponent<GameProperties>();
 		m_gamestatemanager = gameObject.AddComponent<GameStateManager>();
 		m_libmanager = gameObject.AddComponent<LibraryManager> ();
+		m_playermanager = gameObject.AddComponent<PlayerManager> ();
 
 
 		//preferably call init after

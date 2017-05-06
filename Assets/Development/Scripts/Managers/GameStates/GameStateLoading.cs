@@ -23,6 +23,7 @@ public class GameStateLoading : GameStateBase {
 
 	public override void ExitState(Enums.GameStateNames p_nextState)
 	{
-
+		Managers.GetInstance().GetPlayerManager().SpawnPlayer();
+		Managers.GetInstance ().GetPlayerManager ().SpawnCamera ();
 	}
 }
