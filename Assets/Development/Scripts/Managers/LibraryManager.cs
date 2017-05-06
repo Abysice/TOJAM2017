@@ -34,10 +34,12 @@ public class LibraryManager : MonoBehaviour {
 		}
 
 		//spawn bookshelves
+		int j= 0; //THIS IS BAD
 		foreach (Vector3 pos in m_spawnPoints) {
-			GameObject temp = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().BookShelves [0], pos, Quaternion.identity) as GameObject;
-			temp.name = Managers.GetInstance ().GetGameProperties ().BookShelves [0].name;
+			GameObject temp = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().BookShelves [j], pos, Quaternion.identity) as GameObject;
+			temp.name = Managers.GetInstance ().GetGameProperties ().BookShelves [j].name;
 			m_bookshelves.Add (temp);
+			j++;
 
 		}
 	

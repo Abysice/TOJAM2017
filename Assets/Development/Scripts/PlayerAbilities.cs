@@ -15,7 +15,7 @@ public class PlayerAbilities : MonoBehaviour {
 		{ "Fantasy", Enums.BookTypes.Fantasy },
 		{ "SciFi", Enums.BookTypes.SciFi },
 		{ "Romance" , Enums.BookTypes.Romance},
-		{ "Chilrens" , Enums.BookTypes.Childrens},
+		{ "Childrens" , Enums.BookTypes.Childrens},
 		{ "Mystery" , Enums.BookTypes.Mystery},
 		{ "Classics" , Enums.BookTypes.Classics},
 		{ "Art" , Enums.BookTypes.Art},
