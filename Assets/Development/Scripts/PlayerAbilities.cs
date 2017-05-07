@@ -9,7 +9,7 @@ public class PlayerAbilities : MonoBehaviour {
 	private PlayerController m_pcon;
 	private Enums.BookTypes held_book;
 	private bool m_droppable;
-	private float shushDistance;
+	public float shushDistance;
 
 	private Dictionary<string, Enums.BookTypes> dict = new Dictionary<string, Enums.BookTypes> {
 		{ "NonFiction", Enums.BookTypes.NonFiction },
@@ -29,7 +29,7 @@ public class PlayerAbilities : MonoBehaviour {
 		m_pcon = gameObject.GetComponent<PlayerController> ();
 		held_book = Enums.BookTypes.Null;
 		m_droppable = false;
-		shushDistance = 5;
+		shushDistance = 3;
 	}
 	
 	// Update is called once per frame
@@ -60,13 +60,15 @@ public class PlayerAbilities : MonoBehaviour {
 			Debug.Log ("Need to trigger the dude to walk away");
 		}
 
-		if (Input.GetKeyDown(KeyCode.LeftShift)) {
-			Vector3 dir = new Vector3 (transform.position.x + shushDistance, transform.position.y + shushDistance, 0);
-			RaycastHit hit;
-			Debug.DrawLine (transform.position, dir, Color.red);
-			if (Physics.Raycast (transform.position, dir, out hit) && hit.collider.tag == "SeatNPC") {
-				Debug.Log ("It hit");
-		//		hit.collider.GetComponent<SeatNPCController> ().Shush ();
+		if (Input.GetKeyDown (KeyCode.LeftShift)) {			
+			foreach (SeatNPCController npc in Managers.GetInstance().GetNPCManager().GetSeatNPCList()) {
+				float distance = Vector3.Distance (transform.position, npc.transform.position);
+				Debug.Log (distance);
+				Debug.Log (npc.transform.position);
+				if (distance < shushDistance) {
+					Debug.Log ("y'all got shushed");
+					npc.GetComponent<SeatNPCController> ().Shush ();
+				}
 			}
 		}
 	}
