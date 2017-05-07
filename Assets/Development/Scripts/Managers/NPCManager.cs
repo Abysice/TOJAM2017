@@ -27,8 +27,8 @@ public class NPCManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (timer <= 0) {
-			int npcType = Random.Range (1, 3);
-			if (npcType == 2 && lineCount < 7) {
+			int npcType = Random.Range (0,10);
+			if (npcType <6 && lineCount < 7) {
 				SpawnLineNPC ();
 			} else if (seatCount < 12) {
 				SpawnSeatNPC ();
@@ -107,5 +107,9 @@ public class NPCManager : MonoBehaviour {
 		}
 		Debug.Log("walk away" + npcToGive.name);
 		return npcToGive;
+	}
+
+	public List<SeatNPCController> GetSeatNPCList() {
+		return m_seatnpcs;
 	}
 }
