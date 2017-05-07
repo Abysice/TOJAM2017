@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public float speed = 5f;
+	public float speed = 10f;
 	private Vector2 direction;
 	public float lerpVal = .9f;
 	private Vector3 m_movementVec;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 	
 
 		pos = pos + (m_movementVec.normalized * speed * Time.deltaTime);
-		if (m_movementVec != Vector3.zero) {
+			if (m_movementVec != Vector3.zero) {
 			setDirection (m_movementVec);
 		}
 		gameObject.GetComponent<Rigidbody2D> ().MovePosition (pos);

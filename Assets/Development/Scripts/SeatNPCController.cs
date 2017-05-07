@@ -48,11 +48,16 @@ public class SeatNPCController : MonoBehaviour {
 		}
 					
 		if (sitting) {
-			Debug.Log ("sitting");
 			timeToTalk -= Time.deltaTime;
 			timeToLive -= Time.deltaTime;
+		}
+
+		if (talking) {
+			if (Random.Range (0, 10) > 8) {
+				Managers.GetInstance ().GetLibraryManager ().TickCurrency ();
 			}
 		}
+	}
 
 	public void walkToSeat() {
 		if (!hasSeat) {

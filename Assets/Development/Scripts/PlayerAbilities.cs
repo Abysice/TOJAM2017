@@ -19,7 +19,7 @@ public class PlayerAbilities : MonoBehaviour {
 		{ "Fantasy", Enums.BookTypes.Fantasy },
 		{ "SciFi", Enums.BookTypes.SciFi },
 		{ "Romance" , Enums.BookTypes.Romance},
-		{ "Childrens" , Enums.BookTypes.Childrens},
+		{ "Children" , Enums.BookTypes.Children},
 		{ "Mystery" , Enums.BookTypes.Mystery},
 		{ "Classics" , Enums.BookTypes.Classics},
 		{ "Art" , Enums.BookTypes.Art},
@@ -58,16 +58,17 @@ public class PlayerAbilities : MonoBehaviour {
 			}
 		}
 		if (Input.GetKeyDown (KeyCode.Space) && held_book != Enums.BookTypes.Null && m_droppable) {
-			held_book = Enums.BookTypes.Null;
-			Debug.Log("BOOK RESET SHIT");
+	
 			LineNPCController cunt = Managers.GetInstance ().GetNPCManager ().GetProperCustomer (held_book);
 			if (cunt) {
 				cunt.leaveLibrary ();
 				Managers.GetInstance ().GetLibraryManager ().AddCurrency ();
 				cunt.GotBook ();
 			}
-			//set book back to null
 
+			//set book back to null
+			held_book = Enums.BookTypes.Null;
+			Debug.Log("BOOK RESET SHIT");
 
 		}
 
@@ -79,8 +80,7 @@ public class PlayerAbilities : MonoBehaviour {
 				}
 			}
 		}
-
-		Debug.Log (held_book);
+			
 	}
 	public void DropBook(){
 		m_droppable = true;

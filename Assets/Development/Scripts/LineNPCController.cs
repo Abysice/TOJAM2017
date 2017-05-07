@@ -11,12 +11,14 @@ public class LineNPCController : MonoBehaviour {
 	private bool destroy;
 	private Enums.BookTypes desiredBook;
 	public int linePosition;
+	private bool leaving;
 	private GameObject happyBubble;
 
 	// Use this for initialization
 	void Start () {
 		transform.position = new Vector2(0, -10);
 		bookReceived = false;
+		leaving = false;
 		bookRequested = false;
 		angry = false;
 		speed = 3f;
@@ -60,7 +62,9 @@ public class LineNPCController : MonoBehaviour {
 		if (happiness <= 0) {
 			leaveLibrary();
 			angry = true;
+			if (!leaving) {
 			Managers.GetInstance ().GetLibraryManager ().ReduceCurrency ();
+			}
 		}
 		//Debug.Log (happiness);
 		timer -= Time.deltaTime;
@@ -82,6 +86,7 @@ public class LineNPCController : MonoBehaviour {
 	}
 
 	public void leaveLibrary() {
+		leaving = true;
 		Vector2 pos = transform.position;
 		if (pos.x < 1) {
 			pos.x += speed * Time.deltaTime;

@@ -76,7 +76,12 @@ public class LibraryManager : MonoBehaviour {
 	}
 
 	public void ReduceCurrency() {
-		m_currency += 100;
+		m_currency -= 100;
+		Debug.Log (m_currency);
+	}
+
+	public void TickCurrency() {
+		m_currency -= 1;
 		Debug.Log (m_currency);
 	}
 }

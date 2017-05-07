@@ -20,7 +20,7 @@ public class Enums : MonoBehaviour {
 		Fantasy,
 		SciFi,
 		Romance,
-		Childrens,
+		Children,
 		Mystery,
 		Classics,
 		Art,

@@ -10,7 +10,6 @@ public class SignController : MonoBehaviour {
 	void Update () {
 		GameObject player = Managers.GetInstance ().GetPlayerManager ().GetPlayer ();
 		if (player) {
-			Debug.Log (player.GetComponent<PlayerAbilities> ().held_book);
 			if (player.GetComponent<PlayerAbilities> ().held_book == Enums.BookTypes.Null) {
 				gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			} else {
