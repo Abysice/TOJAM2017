@@ -13,6 +13,7 @@ public class LineNPCController : MonoBehaviour {
 	public int linePosition;
 	private bool leaving;
 	private GameObject happyBubble;
+	private Vector2 direction;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class LineNPCController : MonoBehaviour {
 		gameObject.GetComponent<Renderer> ().material.color = Color.green;
 		spawnBookBubble(desiredBook);
 		updateHappiness ("VeryHappy");
+		direction = Vector2.up;
 	}
 	
 	// Update is called once per frame
@@ -91,9 +93,11 @@ public class LineNPCController : MonoBehaviour {
 		if (pos.x < 1) {
 			pos.x += speed * Time.deltaTime;
 			transform.position = Vector3.Lerp (transform.position, pos, 0.5f);
+			direction = Vector2.right;
 		} else if(pos.y >= -10) {
 			pos.y -= speed * Time.deltaTime;
 			transform.position = Vector3.Lerp (transform.position, pos, 0.5f);
+			direction = Vector2.down;
 		}
 		if (pos.y <= -10) {
 			Managers.GetInstance ().GetNPCManager ().RemoveNPC ();
@@ -168,6 +172,10 @@ public class LineNPCController : MonoBehaviour {
 			happyBubble = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().Angry, transform.position + new Vector3(0.7f,0.7f,0), Quaternion.identity) as GameObject;
 		}
 		happyBubble.transform.parent = transform;
+	}
+
+	public Vector2 GetDirection () {
+		return direction;
 	}
 }
 	

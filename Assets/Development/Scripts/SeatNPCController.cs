@@ -18,6 +18,8 @@ public class SeatNPCController : MonoBehaviour {
 
 	private Vector3 seat;
 
+	private Vector2 direction;
+
 	// Use this for initialization
 	void Start () {
 		transform.position = new Vector2 (0, -10);
@@ -28,6 +30,7 @@ public class SeatNPCController : MonoBehaviour {
 		leaving = false;
 		talking = false;
 		hasSeat = false;
+		direction = Vector2.up;
 	}
 	
 	// Update is called once per frame
@@ -64,11 +67,17 @@ public class SeatNPCController : MonoBehaviour {
 			seat = Managers.GetInstance ().GetSeatManager ().TakeSeat ();
 			hasSeat = true;
 		}
+		if (seat.x > 0) {
+			direction = Vector2.right;
+		} else {
+			direction = Vector2.left;
+		}
 
 		float step = speed * Time.deltaTime;
 		transform.position = Vector2.MoveTowards (transform.position, seat, step);
 
 		if (transform.position.x == seat.x && transform.position.y == seat.y) {
+			direction = Vector2.down;
 			sitting = true;
 		}
 	}
@@ -79,7 +88,12 @@ public class SeatNPCController : MonoBehaviour {
 		transform.position = Vector2.MoveTowards (transform.position, new Vector2(0,-10), step);
 		if (transform.position.y <= -10f) {
 				destroy = true;
-			}
+		}
+		if (transform.position.x > 0) {
+			direction = Vector2.left;
+		} else {
+			direction = Vector2.right;
+		}
 	}
 
 	public bool isTalking() {
@@ -103,5 +117,10 @@ public class SeatNPCController : MonoBehaviour {
 		gameObject.GetComponent<Renderer> ().material.color = Color.red;
 		talkBubble = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().TalkBubble, transform.position + new Vector3(-1,0.7f,0), Quaternion.identity) as GameObject;
 		talkBubble.transform.parent = transform;
+	}
+
+
+	public Vector2 GetDirection () {
+		return direction;
 	}
 }
