@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey ("up") || Input.GetKey("w")) {
 			m_movementVec += Vector3.up;
 		}
-		if (Input.GetKey ("down") || Input.GetKey("s")) {
+		if ((Input.GetKey ("down") || Input.GetKey("s")) && transform.position.y >= -10) {
 			m_movementVec += Vector3.down;
 		}
 		if (Input.GetKey ("right") || Input.GetKey("d")) {
