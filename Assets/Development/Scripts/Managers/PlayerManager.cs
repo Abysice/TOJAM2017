@@ -7,7 +7,8 @@ public class PlayerManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		Player = null;
+		SceneCamera = null;
 	}
 	
 	// Update is called once per frame
@@ -16,12 +17,17 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void SpawnPlayer() {
-		Debug.Log ("player spawned");
+		if (Player != null) {
+			Destroy (Player);
+		}
 		Player = Managers.GetInstance().GetGameProperties().PlayerPrefab;
 		Player = GameObject.Instantiate (Player);
 	}
 
 	public void SpawnCamera() {
+		if (SceneCamera != null) {
+			Destroy (SceneCamera);
+		}
 		SceneCamera = Managers.GetInstance().GetGameProperties().CameraPrefab;
 		GameObject.Instantiate (SceneCamera);
 	}
@@ -29,5 +35,9 @@ public class PlayerManager : MonoBehaviour {
 
 	public GameObject GetPlayer() {
 		return Player;
+	}
+
+	public GameObject GetCamera() {
+		return SceneCamera;
 	}
 }

@@ -19,7 +19,7 @@ public class NPCManager : MonoBehaviour {
 	void Start () {
 		NPCCount = 0;
 		startTime = 10;
-		timer = 10;
+		timer = 0;
 		speedTimer = 10;
 		lineCount = 0;
 		seatCount = 0;
@@ -28,6 +28,9 @@ public class NPCManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Managers.GetInstance ().GetGameStateManager ().CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
+			return;
+		}
 		if (timer <= 0) {
 			int npcType = Random.Range (0,10);
 			if (npcType < 6 && lineCount < 7) {

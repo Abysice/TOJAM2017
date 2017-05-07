@@ -71,7 +71,6 @@ public class LibraryManager : MonoBehaviour {
 	}
 
 	public void AddCurrency(int amount) {
-		//m_currency += 100;
 		m_currency += amount;
 		Debug.Log (m_currency);
 	}
