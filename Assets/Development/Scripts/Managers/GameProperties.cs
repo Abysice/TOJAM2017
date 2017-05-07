@@ -25,5 +25,6 @@ public class GameProperties : MonoBehaviour {
 	public GameObject Happy;
 	public GameObject VeryHappy;
 	public GameObject TalkBubble;
+	public GameObject ShushBubble;
 
 }

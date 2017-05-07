@@ -10,6 +10,8 @@ public class PlayerAbilities : MonoBehaviour {
 	public  Enums.BookTypes held_book;
 	private bool m_droppable;
 	public float shushDistance;
+	private bool shushing;
+	private float timer;
 
 
 
@@ -33,14 +35,25 @@ public class PlayerAbilities : MonoBehaviour {
 		held_book = Enums.BookTypes.Null;
 		m_droppable = false;
 		shushDistance = 3;
+		shushing = false;
+		timer = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_mgr.CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
+		if (Managers.GetInstance ().GetGameStateManager().CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
 			return;
 		}	
-		 
+		if (shushing && timer <= 0) {
+			for(int i = 0; i < transform.GetChildCount(); i++)
+			{
+				Transform child = transform.GetChild(i);
+				if (child.name == "ChatPrefab") {
+					child.gameObject.SetActive(false);
+					shushing = false;
+				}
+			}
+		}
 		if (Input.GetKeyDown (KeyCode.Space) && held_book == Enums.BookTypes.Null) {
 			Vector3 pos = transform.position;
 			Vector2 offset = gameObject.GetComponent<BoxCollider2D> ().offset;
@@ -73,13 +86,25 @@ public class PlayerAbilities : MonoBehaviour {
 
 		}
 
-		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {			
+		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {	
+			for(int i = 0; i < transform.GetChildCount(); i++)
+			{
+				Transform child = transform.GetChild(i);
+				if (child.name == "ChatPrefab") {
+					child.gameObject.SetActive(true);
+					shushing = true;
+					timer = 1;
+				}
+			}
 			foreach (SeatNPCController npc in Managers.GetInstance().GetNPCManager().GetSeatNPCList()) {
 				float distance = Vector3.Distance (transform.position, npc.transform.position);
 				if (distance < shushDistance) {					
 					npc.GetComponent<SeatNPCController> ().Shush ();
 				}
 			}
+		}
+		if (shushing) {
+			timer -= Time.deltaTime;
 		}
 			
 	}
