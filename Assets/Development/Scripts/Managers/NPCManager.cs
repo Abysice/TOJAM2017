@@ -95,4 +95,17 @@ public class NPCManager : MonoBehaviour {
 	public void SubtractLine() {
 		lineCount--;
 	}
+
+	public LineNPCController GetProperCustomer(Enums.BookTypes book) {
+		int leastHappy = 100;
+		LineNPCController npcToGive = null;
+		foreach (LineNPCController npc in m_linenpcs) {
+			if (npc.GetDesiredBook() == book && npc.GetHappiness() < leastHappy) {
+				leastHappy = npc.GetHappiness();
+				npcToGive = npc;
+			}
+		}
+		Debug.Log("walk away" + npcToGive.name);
+		return npcToGive;
+	}
 }
