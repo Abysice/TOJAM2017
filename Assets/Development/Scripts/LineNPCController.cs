@@ -10,6 +10,7 @@ public class LineNPCController : MonoBehaviour {
 	private bool angry;
 	private bool destroy;
 	private Enums.BookTypes desiredBook;
+	public int linePosition;
 
 	// Use this for initialization
 	void Start () {
@@ -26,8 +27,7 @@ public class LineNPCController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (!angry) {
+		if (!angry && !bookReceived) {
 			walkToDesk ();
 		}
 
@@ -47,6 +47,7 @@ public class LineNPCController : MonoBehaviour {
 		if (happiness <= 0) {
 			leaveLibrary();
 			angry = true;
+			Managers.GetInstance ().GetLibraryManager ().ReduceCurrency ();
 		}
 		//Debug.Log (happiness);
 		timer -= Time.deltaTime;
@@ -55,7 +56,6 @@ public class LineNPCController : MonoBehaviour {
 	public void walkToDesk() {
 		Vector2 pos = transform.position;
 		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.up, .5f);
-	
 		if (pos.y <= 1 && !hit.collider) {
 			pos.y += speed * Time.deltaTime;
 			transform.position = Vector3.Lerp (transform.position, pos, 0.5f);
@@ -98,6 +98,10 @@ public class LineNPCController : MonoBehaviour {
 
 	public Enums.BookTypes GetDesiredBook() {
 		return desiredBook;
+	}
+
+	public void GotBook() {
+		bookReceived = true;
 	}
 }
 	

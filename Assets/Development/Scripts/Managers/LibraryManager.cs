@@ -9,16 +9,20 @@ public class LibraryManager : MonoBehaviour {
 	private List<GameObject> m_bookshelves = new List<GameObject>();
 	private List<Vector3> m_spawnPoints = new List<Vector3> ();
 
-	private int Currency;
+	private int m_currency;
 	private GameStateManager m_mgr;
 
 	public GameObject GetLevelObject() {
 		return m_level;
 	}
 
+	public int  GetCurrency() {
+		return m_currency;
+	}
+
 	// Use this for initialization
 	void Start () {
-		Currency = 0;
+		m_currency = 200;
 		m_mgr = Managers.GetInstance ().GetGameStateManager ();
 	}
 	
@@ -29,16 +33,11 @@ public class LibraryManager : MonoBehaviour {
 			return;
 		}
 
-
-
-
-
+		if (m_currency <= 0) {
+			//Game Over
+			m_mgr.ChangeGameState(Enums.GameStateNames.GS_04_LEAVING);
+		}
 	}
-
-
-
-
-
 
 	public void SpawnLevel(){
 		//spawn the level
@@ -71,5 +70,13 @@ public class LibraryManager : MonoBehaviour {
 		return m_level;
 	}
 
+	public void AddCurrency() {
+		m_currency += 100;
+		Debug.Log (m_currency);
+	}
 
+	public void ReduceCurrency() {
+		m_currency += 100;
+		Debug.Log (m_currency);
+	}
 }

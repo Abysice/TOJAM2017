@@ -24,5 +24,6 @@ public class Enums : MonoBehaviour {
 		Mystery,
 		Classics,
 		Art,
+		Tragedy,
 	};
 }

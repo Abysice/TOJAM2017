@@ -21,6 +21,7 @@ public class PlayerAbilities : MonoBehaviour {
 		{ "Mystery" , Enums.BookTypes.Mystery},
 		{ "Classics" , Enums.BookTypes.Classics},
 		{ "Art" , Enums.BookTypes.Art},
+		{ "Tragedy", Enums.BookTypes.Tragedy},
 	};	
 
 	// Use this for initialization
@@ -37,9 +38,7 @@ public class PlayerAbilities : MonoBehaviour {
 		if (m_mgr.CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
 			return;
 		}	
-
-
-
+		 
 		if (Input.GetKeyDown (KeyCode.Space) && held_book == Enums.BookTypes.Null) {
 			Debug.Log ("Activated ability");
 			RaycastHit2D hit = Physics2D.Raycast (transform.position, m_pcon.GetDirection (), 1.0f);
@@ -54,19 +53,20 @@ public class PlayerAbilities : MonoBehaviour {
 				}
 			}
 		} else if (Input.GetKeyDown (KeyCode.Space) && held_book != Enums.BookTypes.Null && m_droppable) {
-			Managers.GetInstance ().GetNPCManager ().GetProperCustomer (held_book);
+			LineNPCController cunt = Managers.GetInstance ().GetNPCManager ().GetProperCustomer (held_book);
+			if (cunt) {
+				cunt.leaveLibrary ();
+				Managers.GetInstance ().GetLibraryManager ().AddCurrency ();
+				cunt.GotBook ();
+			}
 			//set book back to null
 			held_book = Enums.BookTypes.Null;
-			Debug.Log ("Need to trigger the dude to walk away");
 		}
 
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {			
 			foreach (SeatNPCController npc in Managers.GetInstance().GetNPCManager().GetSeatNPCList()) {
 				float distance = Vector3.Distance (transform.position, npc.transform.position);
-				Debug.Log (distance);
-				Debug.Log (npc.transform.position);
-				if (distance < shushDistance) {
-					Debug.Log ("y'all got shushed");
+				if (distance < shushDistance) {					
 					npc.GetComponent<SeatNPCController> ().Shush ();
 				}
 			}
