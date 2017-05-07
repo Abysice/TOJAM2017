@@ -47,6 +47,7 @@ public class LineNPCController : MonoBehaviour {
 		if (happiness <= 0) {
 			leaveLibrary();
 			angry = true;
+			Managers.GetInstance ().GetLibraryManager ().ReduceCurrency ();
 		}
 		//Debug.Log (happiness);
 		timer -= Time.deltaTime;

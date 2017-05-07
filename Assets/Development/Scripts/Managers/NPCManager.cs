@@ -103,6 +103,9 @@ public class NPCManager : MonoBehaviour {
 	public LineNPCController GetProperCustomer(Enums.BookTypes book) {
 		int leastHappy = 100;
 		LineNPCController npcToGive = null;
+		if (m_linenpcs.Count < 1) {
+			return null;
+		}
 		foreach (LineNPCController npc in m_linenpcs) {
 			if (npc.GetDesiredBook() == book && npc.GetHappiness() < leastHappy) {
 				leastHappy = npc.GetHappiness();
