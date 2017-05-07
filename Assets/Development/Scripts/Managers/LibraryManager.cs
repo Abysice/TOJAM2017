@@ -30,7 +30,10 @@ public class LibraryManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKey (KeyCode.Escape)) {
+			Application.Quit ();
+		}
+
 		if (m_mgr.CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
 			return;
 		}
