@@ -107,7 +107,6 @@ public class SeatNPCController : MonoBehaviour {
 		if (talking) {
 				talking = false;
 				timeToTalk = Random.Range (4, 8);
-				gameObject.GetComponent<Renderer> ().material.color = Color.grey;
 				Destroy (talkBubble);
 			}
 	}
@@ -117,7 +116,6 @@ public class SeatNPCController : MonoBehaviour {
 	}
 
 	private void talk() {
-		gameObject.GetComponent<Renderer> ().material.color = Color.red;
 		talkBubble = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().TalkBubble, transform.position + new Vector3(-1,0.7f,0), Quaternion.identity) as GameObject;
 		talkBubble.transform.parent = transform;
 	}

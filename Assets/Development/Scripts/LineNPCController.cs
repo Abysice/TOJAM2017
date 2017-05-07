@@ -28,7 +28,7 @@ public class LineNPCController : MonoBehaviour {
 		int maxBooks = Managers.GetInstance ().GetLibraryManager ().GetBookShelfCount();
 		desiredBook = (Enums.BookTypes)Random.Range (1, maxBooks);
 		requestBook ();
-		gameObject.GetComponent<Renderer> ().material.color = Color.green;
+
 		spawnBookBubble(desiredBook);
 		updateHappiness ("VeryHappy");
 		direction = Vector2.up;
