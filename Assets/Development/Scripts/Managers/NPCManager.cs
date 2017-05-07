@@ -112,7 +112,6 @@ public class NPCManager : MonoBehaviour {
 				npcToGive = npc;
 			}
 		}
-		Debug.Log("walk away" + npcToGive.name);
 		return npcToGive;
 	}
 
