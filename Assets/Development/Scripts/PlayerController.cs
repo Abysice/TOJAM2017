@@ -15,14 +15,6 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		m_movementVec = Vector3.zero;
-
-
-		if (Input.GetKeyDown ("u")) {
-			Managers.GetInstance ().GetNPCManager ().SpawnLineNPC ();
-		}
-		if (Input.GetKeyDown ("i")) {
-			Managers.GetInstance ().GetNPCManager ().SpawnSeatNPC ();
-		}
 		if (Input.GetKey ("up") || Input.GetKey("w")) {
 			m_movementVec += Vector3.up;
 		}
@@ -35,8 +27,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey ("left") || Input.GetKey("a")) {
 			m_movementVec += Vector3.left;
 		}
-
-
 	}
 
 	void FixedUpdate() {

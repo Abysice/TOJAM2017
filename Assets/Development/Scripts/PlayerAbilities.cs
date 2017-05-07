@@ -73,7 +73,7 @@ public class PlayerAbilities : MonoBehaviour {
 
 		}
 
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {			
+		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) {			
 			foreach (SeatNPCController npc in Managers.GetInstance().GetNPCManager().GetSeatNPCList()) {
 				float distance = Vector3.Distance (transform.position, npc.transform.position);
 				if (distance < shushDistance) {					
