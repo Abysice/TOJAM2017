@@ -72,9 +72,6 @@ public class PlayerAbilities : MonoBehaviour {
 			}
 		}
 	}
-
-
-
 	public void DropBook(){
 		m_droppable = true;
 	}
