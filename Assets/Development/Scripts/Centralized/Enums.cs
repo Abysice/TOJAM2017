@@ -14,9 +14,9 @@ public class Enums : MonoBehaviour {
 	};
 
 	public enum BookTypes {
-		Null = -1,
-		NonFiction = 0,
-		Horror = 1,
+		Null = 0,
+		NonFiction = 1,
+		Horror = 2,
 		Fantasy,
 		SciFi,
 		Romance,

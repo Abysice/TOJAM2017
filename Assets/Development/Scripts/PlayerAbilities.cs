@@ -7,9 +7,11 @@ public class PlayerAbilities : MonoBehaviour {
 
 	private GameStateManager m_mgr;
 	private PlayerController m_pcon;
-	private Enums.BookTypes held_book;
+	public  Enums.BookTypes held_book;
 	private bool m_droppable;
 	public float shushDistance;
+
+
 
 	private Dictionary<string, Enums.BookTypes> dict = new Dictionary<string, Enums.BookTypes> {
 		{ "NonFiction", Enums.BookTypes.NonFiction },
@@ -40,19 +42,24 @@ public class PlayerAbilities : MonoBehaviour {
 		}	
 		 
 		if (Input.GetKeyDown (KeyCode.Space) && held_book == Enums.BookTypes.Null) {
-			Debug.Log ("Activated ability");
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, m_pcon.GetDirection (), 1.0f);
+			Vector3 pos = transform.position;
+			Vector2 offset = gameObject.GetComponent<BoxCollider2D> ().offset;
+			Vector3 temp = new Vector3 (offset.x, offset.x);	
+			pos = pos + temp;
+			RaycastHit2D hit = Physics2D.Raycast (new Vector2(pos.x, pos.y), m_pcon.GetDirection (), 2.5f);
 			if (hit != null) {
 				if (hit.collider != null && hit.collider.tag == "Shelf") {
 					if (dict.ContainsKey (hit.collider.name)) {
 						held_book = dict [hit.collider.name];
-						Debug.Log ("I am holding a " + hit.collider.name + " book");
 					} else {
 						Debug.LogWarning ("BAD NAME ON SHELF");
 					}
 				}
 			}
-		} else if (Input.GetKeyDown (KeyCode.Space) && held_book != Enums.BookTypes.Null && m_droppable) {
+		}
+		if (Input.GetKeyDown (KeyCode.Space) && held_book != Enums.BookTypes.Null && m_droppable) {
+			held_book = Enums.BookTypes.Null;
+			Debug.Log("BOOK RESET SHIT");
 			LineNPCController cunt = Managers.GetInstance ().GetNPCManager ().GetProperCustomer (held_book);
 			if (cunt) {
 				cunt.leaveLibrary ();
@@ -60,7 +67,8 @@ public class PlayerAbilities : MonoBehaviour {
 				cunt.GotBook ();
 			}
 			//set book back to null
-			held_book = Enums.BookTypes.Null;
+
+
 		}
 
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {			
@@ -71,13 +79,18 @@ public class PlayerAbilities : MonoBehaviour {
 				}
 			}
 		}
+
+		Debug.Log (held_book);
 	}
 	public void DropBook(){
 		m_droppable = true;
+		Debug.Log ("can drop the book");
 	}
 
 	public void NoDropBook() {
 		m_droppable = false;
 	}
+
+
 }
  

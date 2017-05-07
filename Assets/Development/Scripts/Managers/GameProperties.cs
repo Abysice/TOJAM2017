@@ -24,5 +24,6 @@ public class GameProperties : MonoBehaviour {
 	public GameObject Neutral;
 	public GameObject Happy;
 	public GameObject VeryHappy;
+	public GameObject TalkBubble;
 
 }

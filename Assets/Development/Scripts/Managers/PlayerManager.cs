@@ -18,11 +18,16 @@ public class PlayerManager : MonoBehaviour {
 	public void SpawnPlayer() {
 		Debug.Log ("player spawned");
 		Player = Managers.GetInstance().GetGameProperties().PlayerPrefab;
-		GameObject.Instantiate (Player);
+		Player = GameObject.Instantiate (Player);
 	}
 
 	public void SpawnCamera() {
 		SceneCamera = Managers.GetInstance().GetGameProperties().CameraPrefab;
 		GameObject.Instantiate (SceneCamera);
+	}
+
+
+	public GameObject GetPlayer() {
+		return Player;
 	}
 }

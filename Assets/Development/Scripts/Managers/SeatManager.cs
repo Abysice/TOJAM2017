@@ -29,7 +29,8 @@ public class SeatManager : MonoBehaviour {
 	}
 		
 	public Vector3 TakeSeat() {
-		Vector3 seatPos = m_freeseats [0]; 
+		int index = Random.Range (0, m_freeseats.Count-1);
+		Vector3 seatPos = m_freeseats [index]; 
 		m_freeseats.Remove (seatPos);
 		return seatPos;
 	}

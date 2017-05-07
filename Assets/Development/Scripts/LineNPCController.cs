@@ -43,7 +43,7 @@ public class LineNPCController : MonoBehaviour {
 			bookReceived = true;
 		}
 
-		if (timer <= 0) {
+		if (timer <= 0 && !bookReceived) {
 			happiness--;
 			timer = 10f;
 			if (happiness < 2) {
@@ -90,7 +90,7 @@ public class LineNPCController : MonoBehaviour {
 			pos.y -= speed * Time.deltaTime;
 			transform.position = Vector3.Lerp (transform.position, pos, 0.5f);
 		}
-		if (pos.y <= -5) {
+		if (pos.y <= -10) {
 			Managers.GetInstance ().GetNPCManager ().RemoveNPC ();
 			Managers.GetInstance ().GetNPCManager ().SubtractLine ();
 			destroy = true;
