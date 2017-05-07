@@ -47,7 +47,7 @@ public class SeatNPCController : MonoBehaviour {
 			talk();
 		}
 
-		if (timeToLive <= 0) {
+		if (timeToLive <= 0 && !talking) {
 			Shush ();
 			leaveLibrary ();
 			leaving = true;
