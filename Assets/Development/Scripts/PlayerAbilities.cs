@@ -29,7 +29,7 @@ public class PlayerAbilities : MonoBehaviour {
 		m_pcon = gameObject.GetComponent<PlayerController> ();
 		held_book = Enums.BookTypes.Null;
 		m_droppable = false;
-		shushDistance = 1;
+		shushDistance = 3;
 	}
 	
 	// Update is called once per frame
@@ -60,22 +60,17 @@ public class PlayerAbilities : MonoBehaviour {
 			Debug.Log ("Need to trigger the dude to walk away");
 		}
 
-//		if (Input.GetKeyDown (KeyCode.LeftShift)) {			
-//			foreach (SeatNPCController npc in Managers.GetInstance().GetNPCManager().GetSeatNPCList()) {
-//				int distance = (transform.position - 
-
-//			}
-		//	RaycastHit2D[] hit;
-			//hit = Physics2D.CircleCastAll (transform.position, shushDistance, Vector2.up, 0);
-		//	hit = Physics2D.CircleCastAll(transform.position,shushDistance,Vector2.up);
-		//	foreach (RaycastHit2D h in hit) {
-		//		Debug.Log (h.collider.name);
-		//		if (h && h.collider.tag == "SeatNPC") {
-		//			Debug.Log ("It hit");
-		//			h.collider.GetComponent<SeatNPCController> ().Shush ();
-		//		}
-		//	}
-//		}
+		if (Input.GetKeyDown (KeyCode.LeftShift)) {			
+			foreach (SeatNPCController npc in Managers.GetInstance().GetNPCManager().GetSeatNPCList()) {
+				float distance = Vector3.Distance (transform.position, npc.transform.position);
+				Debug.Log (distance);
+				Debug.Log (npc.transform.position);
+				if (distance < shushDistance) {
+					Debug.Log ("y'all got shushed");
+					npc.GetComponent<SeatNPCController> ().Shush ();
+				}
+			}
+		}
 	}
 
 
