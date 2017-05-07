@@ -19,4 +19,10 @@ public class GameProperties : MonoBehaviour {
 	public GameObject TragedyBubble;
 	public GameObject ClassicsBubble;
 	public GameObject MysteryBubble;
+	public GameObject Angry;
+	public GameObject Sad;
+	public GameObject Neutral;
+	public GameObject Happy;
+	public GameObject VeryHappy;
+
 }

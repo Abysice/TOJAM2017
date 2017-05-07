@@ -11,6 +11,7 @@ public class LineNPCController : MonoBehaviour {
 	private bool destroy;
 	private Enums.BookTypes desiredBook;
 	public int linePosition;
+	private GameObject happyBubble;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class LineNPCController : MonoBehaviour {
 		requestBook ();
 		gameObject.GetComponent<Renderer> ().material.color = Color.green;
 		spawnBookBubble(desiredBook);
+		updateHappiness ("VeryHappy");
 	}
 	
 	// Update is called once per frame
@@ -45,11 +47,13 @@ public class LineNPCController : MonoBehaviour {
 			happiness--;
 			timer = 10f;
 			if (happiness < 2) {
-				gameObject.GetComponent<Renderer> ().material.color = Color.red;
+				updateHappiness ("Angry");
 			} else if (happiness < 4) {
-				gameObject.GetComponent<Renderer> ().material.color = Color.yellow;
+				updateHappiness ("Sad");
+			} else if (happiness < 6) {
+				updateHappiness ("Neutral");
 			} else if (happiness < 7) {
-				gameObject.GetComponent<Renderer> ().material.color = Color.blue;
+				updateHappiness ("Happy");
 			}
 		}
 
@@ -140,7 +144,25 @@ public class LineNPCController : MonoBehaviour {
 		}
 
 		book.transform.parent = transform;
+	}
 
+	private void updateHappiness(string happyLevel) {
+		if (happyLevel == "VeryHappy") {
+			happyBubble = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().VeryHappy, transform.position + new Vector3(0.7f,0.7f,0), Quaternion.identity) as GameObject;
+		} else if (happyLevel == "Happy") {
+			Destroy (happyBubble);
+			happyBubble = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().Happy, transform.position + new Vector3(0.7f,0.7f,0), Quaternion.identity) as GameObject;
+		}else if (happyLevel == "Neutral") {
+			Destroy (happyBubble);
+			happyBubble = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().Neutral, transform.position + new Vector3(0.7f,0.7f,0), Quaternion.identity) as GameObject;
+		}else if (happyLevel == "Sad") {
+			Destroy (happyBubble);
+			happyBubble = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().Sad, transform.position + new Vector3(0.7f,0.7f,0), Quaternion.identity) as GameObject;
+		}else if (happyLevel == "Angry") {
+			Destroy (happyBubble);
+			happyBubble = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().Angry, transform.position + new Vector3(0.7f,0.7f,0), Quaternion.identity) as GameObject;
+		}
+		happyBubble.transform.parent = transform;
 	}
 }
 	
