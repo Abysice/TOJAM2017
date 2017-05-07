@@ -18,12 +18,12 @@ public class GameStateMenu : GameStateBase {
 	public override void UpdateState()
 	{
 		//add some loading screen shenanigans before this
-		m_gameStateManager.ChangeGameState(Enums.GameStateNames.GS_02_LOADING);
+		//m_gameStateManager.ChangeGameState(Enums.GameStateNames.GS_02_LOADING);
 	}
 
 	public override void ExitState(Enums.GameStateNames p_nextState)
 	{
-
+		Application.LoadLevel ("OPENSCENE");
 	}
 
 }
