@@ -12,6 +12,8 @@ public class LibraryManager : MonoBehaviour {
 	private int m_currency;
 	private GameStateManager m_mgr;
 
+	private GameObject m_textui;
+	private GUIText m_text;
 	public GameObject GetLevelObject() {
 		return m_level;
 	}
@@ -32,6 +34,8 @@ public class LibraryManager : MonoBehaviour {
 		if (m_mgr.CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
 			return;
 		}
+
+		//m_text.text = m_currency.ToString();
 
 		if (m_currency <= 0) {
 			//Game Over
@@ -62,6 +66,19 @@ public class LibraryManager : MonoBehaviour {
 			j++;
 
 		}
+
+		//spawn texts
+
+		m_textui =  GameObject.Instantiate(Managers.GetInstance().GetGameProperties().TextCanvas);
+	
+		for(int i = 0; i < m_textui.transform.GetChildCount(); i++)
+		{
+			Transform child = m_textui.transform.GetChild(i);
+			if (child.name == "Text") {
+				m_text = child.GetComponent<GUIText> ();
+			}
+		}
+
 		Debug.Log ("1 - " + m_level);
 	}
 
