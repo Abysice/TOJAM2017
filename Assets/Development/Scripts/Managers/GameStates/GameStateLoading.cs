@@ -27,5 +27,6 @@ public class GameStateLoading : GameStateBase {
 		Managers.GetInstance ().GetLibraryManager ().SpawnLevel ();
 		Managers.GetInstance ().GetSeatManager ().SpawnSeats ();
 		Managers.GetInstance ().GetNPCManager ().SpawnSeatNPC ();
+		Managers.GetInstance ().GetNPCManager ().SpawnLineNPC ();
 	}
 }
