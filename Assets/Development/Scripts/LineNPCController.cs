@@ -25,7 +25,8 @@ public class LineNPCController : MonoBehaviour {
 		speed = 3f;
 		happiness = Random.Range (4, 8);
 		timer = 10f;
-		desiredBook = (Enums.BookTypes)Random.Range (0, 9);
+		int maxBooks = Managers.GetInstance ().GetLibraryManager ().GetBookShelfCount();
+		desiredBook = (Enums.BookTypes)Random.Range (1, maxBooks);
 		requestBook ();
 		gameObject.GetComponent<Renderer> ().material.color = Color.green;
 		spawnBookBubble(desiredBook);
@@ -41,10 +42,6 @@ public class LineNPCController : MonoBehaviour {
 
 		if (bookReceived) {
 			leaveLibrary();
-		}
-
-		if (bookRequested && Input.GetKey(KeyCode.Return)) {
-			bookReceived = true;
 		}
 
 		if (timer <= 0 && !bookReceived) {

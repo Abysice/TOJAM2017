@@ -70,8 +70,9 @@ public class LibraryManager : MonoBehaviour {
 		return m_level;
 	}
 
-	public void AddCurrency() {
-		m_currency += 100;
+	public void AddCurrency(int amount) {
+		//m_currency += 100;
+		m_currency += amount;
 		Debug.Log (m_currency);
 	}
 
@@ -83,5 +84,8 @@ public class LibraryManager : MonoBehaviour {
 	public void TickCurrency() {
 		m_currency -= 1;
 		Debug.Log (m_currency);
+	}
+	public int GetBookShelfCount() {
+		return m_bookshelves.Count;
 	}
 }

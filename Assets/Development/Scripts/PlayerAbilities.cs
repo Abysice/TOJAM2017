@@ -62,7 +62,8 @@ public class PlayerAbilities : MonoBehaviour {
 			LineNPCController cunt = Managers.GetInstance ().GetNPCManager ().GetProperCustomer (held_book);
 			if (cunt) {
 				cunt.leaveLibrary ();
-				Managers.GetInstance ().GetLibraryManager ().AddCurrency ();
+				int bookValue = (int)held_book * 20;
+				Managers.GetInstance ().GetLibraryManager ().AddCurrency (bookValue);
 				cunt.GotBook ();
 			}
 
