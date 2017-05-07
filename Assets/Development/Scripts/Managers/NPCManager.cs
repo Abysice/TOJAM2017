@@ -18,7 +18,7 @@ public class NPCManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		NPCCount = 0;
-		startTime = 10;
+		startTime = 7;
 		timer = 0;
 		speedTimer = 10;
 		lineCount = 0;
@@ -33,7 +33,7 @@ public class NPCManager : MonoBehaviour {
 		}
 		if (timer <= 0) {
 			int npcType = Random.Range (0,10);
-			if (npcType < 6 && lineCount < 7) {
+			if (npcType < 6 && lineCount < 6) {
 				SpawnLineNPC ();
 			} else if (seatCount < 12) {
 				SpawnSeatNPC ();
@@ -42,9 +42,9 @@ public class NPCManager : MonoBehaviour {
 		}
 		timer -= Time.deltaTime;
 
-		if (speedTimer <= 0 && startTime > 2) {
+		if (speedTimer <= 0 && startTime > 1) {
 			startTime--;
-			speedTimer = 20;
+			speedTimer = 10;
 		}
 		LineNPCController destroyNPC = null;
 		foreach (LineNPCController npc in m_linenpcs) {

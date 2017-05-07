@@ -24,7 +24,7 @@ public class LineNPCController : MonoBehaviour {
 		angry = false;
 		speed = 3f;
 		happiness = Random.Range (4, 10);
-		timer = 10f;
+		timer = 6f;
 		int maxBooks = Managers.GetInstance ().GetLibraryManager ().GetBookShelfCount();
 		desiredBook = (Enums.BookTypes)Random.Range (1, maxBooks);
 		requestBook ();
