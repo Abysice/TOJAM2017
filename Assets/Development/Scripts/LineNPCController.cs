@@ -9,21 +9,25 @@ public class LineNPCController : MonoBehaviour {
 	private float timer;
 	private bool angry;
 	private bool destroy;
+	private Enums.BookTypes desiredBook;
 
 	// Use this for initialization
 	void Start () {
+		transform.position = new Vector2(0, -10);
 		bookReceived = false;
 		bookRequested = false;
 		angry = false;
 		speed = 3f;
 		happiness = Random.Range (4, 8);
 		timer = 10f;
+		desiredBook = (Enums.BookTypes)Random.Range (0, 9);
+		requestBook ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (!bookRequested && !angry) {
+		if (!angry) {
 			walkToDesk ();
 		}
 
@@ -56,14 +60,10 @@ public class LineNPCController : MonoBehaviour {
 			pos.y += speed * Time.deltaTime;
 			transform.position = Vector3.Lerp (transform.position, pos, 0.5f);
 		}
-
-		if (pos.y >= 1) {
-			requestBook ();
-		}
 	}
 
 	public void requestBook() {
-		Debug.Log ("I want THAT book");
+		Debug.Log ("I want a " + desiredBook + " book");
 		bookRequested = true;
 
 	}
@@ -94,6 +94,10 @@ public class LineNPCController : MonoBehaviour {
 
 	public bool isDestroy() {
 		return destroy;
+	}
+
+	public Enums.BookTypes GetDesiredBook() {
+		return desiredBook;
 	}
 }
 	
