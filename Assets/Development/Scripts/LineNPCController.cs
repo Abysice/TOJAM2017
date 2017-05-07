@@ -36,6 +36,9 @@ public class LineNPCController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Managers.GetInstance ().GetGameStateManager ().CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
+			return;
+		}
 		if (!angry && !bookReceived) {
 			walkToDesk ();
 		}

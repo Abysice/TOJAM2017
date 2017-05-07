@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (Managers.GetInstance ().GetGameStateManager ().CurrentState != Enums.GameStateNames.GS_03_INPLAY) {
+			return;
+		}
 		m_movementVec = Vector3.zero;
 		if (Input.GetKey ("up") || Input.GetKey("w")) {
 			m_movementVec += Vector3.up;
