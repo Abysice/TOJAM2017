@@ -22,6 +22,6 @@ public class GameStateInPlay : GameStateBase {
 
 	public override void ExitState(Enums.GameStateNames p_nextState)
 	{
-
+		Application.LoadLevel ("GameOver");
 	}
 }

@@ -17,12 +17,11 @@ public class GameStateLeaving : GameStateBase {
 
 	public override void UpdateState()
 	{
-		//add some loading screen shenanigans before this
-		m_gameStateManager.ChangeGameState(Enums.GameStateNames.GS_01_MENU);
+
 	}
 
 	public override void ExitState(Enums.GameStateNames p_nextState)
 	{
-
+		Application.LoadLevel ("MenuScene");
 	}
 }
