@@ -129,25 +129,25 @@ public class LineNPCController : MonoBehaviour {
 	private void spawnBookBubble(Enums.BookTypes genre) {
 		GameObject book = null;
 		if (genre.ToString () == "Art") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().ArtBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().ArtBubble) as GameObject;
 		} else if (genre.ToString () == "Classics") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().ClassicsBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().ClassicsBubble) as GameObject;
 		} else if (genre.ToString () == "SciFi") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().SciFiBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().SciFiBubble) as GameObject;
 		} else if (genre.ToString () == "Horror") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().HorrorBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().HorrorBubble) as GameObject;
 		} else if (genre.ToString () == "Fantasy") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().FantasyBubble);
-		} else if (genre.ToString () == "Childrens") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().ChildrenBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().FantasyBubble) as GameObject;
+		} else if (genre.ToString () == "Children") {
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().ChildrenBubble) as GameObject;
 		} else if (genre.ToString () == "NonFiction") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().NonFictionBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().NonFictionBubble) as GameObject;
 		} else if (genre.ToString () == "Romance") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().RomanceBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().RomanceBubble) as GameObject;
 		} else if (genre.ToString () == "Tragedy") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().TragedyBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().TragedyBubble) as GameObject;
 		} else if (genre.ToString () == "Mystery") {
-			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().MysteryBubble);
+			book = GameObject.Instantiate (Managers.GetInstance ().GetGameProperties ().MysteryBubble) as GameObject;
 		} else {
 			Debug.Log ("Could not find genre " + genre);
 		}
