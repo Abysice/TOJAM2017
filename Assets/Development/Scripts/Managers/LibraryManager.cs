@@ -63,7 +63,12 @@ public class LibraryManager : MonoBehaviour {
 			j++;
 
 		}
-	
+		Debug.Log ("1 - " + m_level);
+	}
+
+	public GameObject GetLevelObjects() {
+		Debug.Log (m_level);
+		return m_level;
 	}
 
 

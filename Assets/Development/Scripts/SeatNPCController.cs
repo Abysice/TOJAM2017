@@ -19,6 +19,7 @@ public class SeatNPCController : MonoBehaviour {
 
 		// Use this for initialization
 		void Start () {
+				transform.position = new Vector2 (0, -10);
 				speed = 3f;
 				timeToTalk = Random.Range (4, 8);
 				timeToLive = Random.Range (15, 25);
@@ -68,8 +69,8 @@ public class SeatNPCController : MonoBehaviour {
 		public void leaveLibrary(){
 				Managers.GetInstance ().GetSeatManager ().ReleaseSeat (seat);
 				float step = speed * Time.deltaTime;
-				transform.position = Vector2.MoveTowards (transform.position, new Vector2(0,-5), step);
-				if (transform.position.y <= -5f) {
+				transform.position = Vector2.MoveTowards (transform.position, new Vector2(0,-10), step);
+				if (transform.position.y <= -10f) {
 						destroy = true;
 					}
 			}

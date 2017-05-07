@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown ("u")) {
 			Managers.GetInstance ().GetNPCManager ().SpawnLineNPC ();
 		}
+		if (Input.GetKeyDown ("i")) {
+			Managers.GetInstance ().GetNPCManager ().SpawnSeatNPC ();
+		}
 		if (Input.GetKey ("up") || Input.GetKey("w")) {
 			m_movementVec += Vector3.up;
 		}

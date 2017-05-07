@@ -8,21 +8,24 @@ public class SeatManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		m_level = Managers.GetInstance ().GetLibraryManager ().GetLevelObject ();
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
 
+	public void SpawnSeats() {
+		m_level = Managers.GetInstance ().GetLibraryManager ().GetLevelObjects();
 		//get the seat spots
-		for(int i = 0; i < m_level.transform.GetChildCount(); i++)
+		for(int i = 0; i < m_level.transform.childCount; i++)
 		{
 			Transform child = m_level.transform.GetChild(i);
 			if (child.tag == "Seat") {
 				m_freeseats.Add (child.position);
 			}
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 		
 	public Vector3 TakeSeat() {
