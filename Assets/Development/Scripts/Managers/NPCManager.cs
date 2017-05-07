@@ -11,7 +11,7 @@ public class NPCManager : MonoBehaviour {
 	private int lineCount;
 	private int seatCount;
 	private List<LineNPCController> m_linenpcs = new List<LineNPCController>();
-	private List<SeatNPCController> m_seatnpcs = new List<SeatNPCController>();
+	//private List<SeatNPCController> m_seatnpcs = new List<SeatNPCController>();
 
 
 	// Use this for initialization
@@ -52,16 +52,16 @@ public class NPCManager : MonoBehaviour {
 			m_linenpcs.Remove (destroyNPC);
 		}
 
-		SeatNPCController destroySeatNPC = null;
-		foreach (SeatNPCController npc in m_seatnpcs) {
-			if (npc.isDestroy()) {
-				destroySeatNPC = npc;
-				Destroy (npc.gameObject);
-			}
-		}
-		if (destroySeatNPC) {
-			m_seatnpcs.Remove (destroySeatNPC);
-		}
+	//	SeatNPCController destroySeatNPC = null;
+	//	foreach (SeatNPCController npc in m_seatnpcs) {
+	//		if (npc.isDestroy()) {
+	//			destroySeatNPC = npc;
+	//			Destroy (npc.gameObject);
+	//		}
+	//	}
+	//	if (destroySeatNPC) {
+	//		m_seatnpcs.Remove (destroySeatNPC);
+	//	}
 	}
 
 	public void SpawnLineNPC() {
@@ -73,9 +73,9 @@ public class NPCManager : MonoBehaviour {
 	}
 
 	public void SpawnSeatNPC() {
-		NPC = Managers.GetInstance().GetGameProperties().SeatNPCPrefab;
-		GameObject npc = GameObject.Instantiate (NPC);
-		m_seatnpcs.Add (npc.GetComponent<SeatNPCController>());
+//		NPC = Managers.GetInstance().GetGameProperties().SeatNPCPrefab;
+//		GameObject npc = GameObject.Instantiate (NPC);
+		//m_seatnpcs.Add (npc.GetComponent<SeatNPCController>());
 		NPCCount++;
 		seatCount++;
 	}

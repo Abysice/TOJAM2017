@@ -12,6 +12,10 @@ public class LibraryManager : MonoBehaviour {
 	private int Currency;
 	private GameStateManager m_mgr;
 
+	public GameObject GetLevelObject() {
+		return m_level;
+	}
+
 	// Use this for initialization
 	void Start () {
 		Currency = 0;
@@ -38,6 +42,7 @@ public class LibraryManager : MonoBehaviour {
 
 	public void SpawnLevel(){
 		//spawn the level
+		Debug.Log("Spawnning  level");
 		m_level = GameObject.Instantiate(Managers.GetInstance().GetGameProperties().LevelPrefab);
 	
 		//get the book spawn points

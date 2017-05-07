@@ -8,7 +8,7 @@ public class SeatManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		m_level = GameObject.Instantiate(Managers.GetInstance().GetGameProperties().LevelPrefab);
+		m_level = Managers.GetInstance ().GetLibraryManager ().GetLevelObject ();
 
 		//get the seat spots
 		for(int i = 0; i < m_level.transform.GetChildCount(); i++)

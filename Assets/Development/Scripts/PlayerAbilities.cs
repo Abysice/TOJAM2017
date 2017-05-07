@@ -66,7 +66,7 @@ public class PlayerAbilities : MonoBehaviour {
 			Debug.DrawLine (transform.position, dir, Color.red);
 			if (Physics.Raycast (transform.position, dir, out hit) && hit.collider.tag == "SeatNPC") {
 				Debug.Log ("It hit");
-				hit.collider.GetComponent<SeatNPCController> ().Shush ();
+		//		hit.collider.GetComponent<SeatNPCController> ().Shush ();
 			}
 		}
 	}
