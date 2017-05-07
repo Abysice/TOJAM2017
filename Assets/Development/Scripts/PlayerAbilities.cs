@@ -54,19 +54,16 @@ public class PlayerAbilities : MonoBehaviour {
 				}
 			}
 		} else if (Input.GetKeyDown (KeyCode.Space) && held_book != Enums.BookTypes.Null && m_droppable) {
-			Managers.GetInstance ().GetNPCManager ().GetProperCustomer (held_book);
+			LineNPCController customer = Managers.GetInstance ().GetNPCManager ().GetProperCustomer (held_book);
 			//set book back to null
 			held_book = Enums.BookTypes.Null;
-			Debug.Log ("Need to trigger the dude to walk away");
+			customer.GotBook ();
 		}
 
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {			
 			foreach (SeatNPCController npc in Managers.GetInstance().GetNPCManager().GetSeatNPCList()) {
 				float distance = Vector3.Distance (transform.position, npc.transform.position);
-				Debug.Log (distance);
-				Debug.Log (npc.transform.position);
-				if (distance < shushDistance) {
-					Debug.Log ("y'all got shushed");
+				if (distance < shushDistance) {					
 					npc.GetComponent<SeatNPCController> ().Shush ();
 				}
 			}

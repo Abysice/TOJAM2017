@@ -12,6 +12,7 @@ public class NPCManager : MonoBehaviour {
 	private int seatCount;
 	private List<LineNPCController> m_linenpcs = new List<LineNPCController>();
 	private List<SeatNPCController> m_seatnpcs = new List<SeatNPCController>();
+	private int lineLength;
 
 
 	// Use this for initialization
@@ -22,6 +23,7 @@ public class NPCManager : MonoBehaviour {
 		speedTimer = 20;
 		lineCount = 0;
 		seatCount = 0;
+		lineLength = 0;
 	}
 	
 	// Update is called once per frame
@@ -70,6 +72,8 @@ public class NPCManager : MonoBehaviour {
 		m_linenpcs.Add (npc.GetComponent<LineNPCController>());
 		NPCCount++;
 		lineCount++;
+		npc.GetComponent<LineNPCController> ().linePosition = lineLength;
+		lineLength++;
 	}
 
 	public void SpawnSeatNPC() {
@@ -111,5 +115,12 @@ public class NPCManager : MonoBehaviour {
 
 	public List<SeatNPCController> GetSeatNPCList() {
 		return m_seatnpcs;
+	}
+
+	public void LeaveLine() {
+		foreach (LineNPCController npc in m_linenpcs) {
+			npc.linePosition--;
+		}			
+		lineLength--;
 	}
 }
